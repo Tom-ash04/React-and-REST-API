@@ -1,0 +1,73 @@
+$glassHeight: 120px;
+$borderWidth: 6px;
+$animationDuration: 1500ms;
+$beerColor: gold;
+
+.wrapper {
+  background: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 300ms ease-in-out;
+  opacity: 1;
+}
+
+.glass-wrapper {
+  position: relative;
+}
+
+.glass {
+  border: $borderWidth solid white;
+  border-bottom-width: $borderWidth * 2;
+  border-top: transparent;
+  border-radius: 0 0 $borderWidth/2 $borderWidth/2;
+  height: $glassHeight;
+  width: $glassHeight*0.6;
+  transform: perspective($glassHeight) rotateX(-10deg);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 20px -5px black, inset 0 -10px 20px -5px black;
+}
+
+.beer {
+  height: 90%;
+  width: 100%;
+  background-color: $beerColor;
+  position: absolute;
+  bottom: 0;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  animation: beer-fill $animationDuration linear infinite;
+}
+
+.foambubble {
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -15px;
+  z-index: 2;
+}
+
+.foambubble:nth-child(1) {left: -21%;}
+.foambubble:nth-child(2) {left: 3%;}
+.foambubble:nth-child(3) {left: 18%;}
+.foambubble:nth-child(4) {left: 37%;}
+.foambubble:nth-child(5) {left: 65%;}
+
+@keyframes beer-fill {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
